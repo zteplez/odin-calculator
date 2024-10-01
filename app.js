@@ -1,7 +1,7 @@
 let screen = document.querySelector(".screen");
 let buttons = document.querySelectorAll(".btn");
-let firstNum;
-let secondNum;
+let firstNum  = null;
+let secondNum  = null;
 let operator = null;
 let isOperatorPressed = false;
 
@@ -52,7 +52,12 @@ function parseCalculation() {
             secondNum = str.substr(i + 1);
             
             if(firstNum && secondNum){
-                screen.innerText = operate(Number(firstNum), Number(secondNum), operator);
+                let result = operate(Number(firstNum), Number(secondNum), operator);
+                if(result % 1 == 0){
+                    screen.innerText = result;
+                }else{
+                    screen.innerText = parseFloat(result).toFixed(2);
+                }
             }else{
                 screen.innerText = "0";
             }
